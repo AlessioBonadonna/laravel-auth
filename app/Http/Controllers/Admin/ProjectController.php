@@ -48,6 +48,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
+
         return view('admin.projects.show');
     }
 
@@ -59,8 +60,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.projects.edit');
     }
+
 
     /**
      * Update the specified resource in storage.
