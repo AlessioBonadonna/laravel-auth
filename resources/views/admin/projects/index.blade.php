@@ -1,17 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-    {{-- <ul>
-        @foreach ($projects as $project)
-            <div class="col-4">
-                {{-- <div>{{ $project->name_proj }}</div>
-
-        </div> 
-    <li><a class="btn btn-primary text-white btn-sm" href="{{ route('admin.projects.show', $project->slug) }}"
-            title="View project">{{ $project->name_proj }}</a></li>
-    @endforeach
-    </ul> --}}
     <h1>projects</h1>
-    <a href="{{ route('admin.projects.create') }}">ao</a>
+    <a href="{{ route('admin.projects.create') }}">Aggiungi un progetto </a>
     @if (session()->has('message'))
         <div class="alert alert-success mb-3 mt-3">
             {{ session()->get('message') }}
@@ -37,12 +27,14 @@
                     <td><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
                             title="Edit project"><i class="fa-solid fa-pen"></i></a></td>
                     <td>
-                        <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="project">
+                        <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="delete-button btn btn-danger ms-3"
                                 data-item-title="{{ $project->name_proj }}"> <i class="fa-solid fa-trash-can"></i></button>
+
                         </form>
+                    </td>
                 </tr>
             @endforeach
             </ul>

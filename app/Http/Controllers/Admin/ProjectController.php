@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -35,20 +38,24 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+        $slug = Project::generateSlug($request->name_proj);
+        $data['slug'] = $slug;
+        $new_project = Project::create($data);
+        return redirect()->route('admin.projects.show', $new_project->slug);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Project $project
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
     {
-
+        //dd($project);
         return view('admin.projects.show', compact('project'));
     }
 
@@ -58,9 +65,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        return view('admin.projects.edit');
+        return view('admin.projects.edit', compact('project'));
     }
 
 
@@ -71,9 +78,14 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        // $data = $request->validated();
+        // $slug = Project::generateSlug($request->name_proj);
+        // $data['slug'] = $slug;
+
+        // $project->update($data);
+        //return redirect()->route('admin.projects.index')->with('message', "$project->name_proj updated successfully");
     }
 
     /**
@@ -84,7 +96,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $cancellato = $project->name_proj;
         $project->delete();
-        return redirect()->route('admin.project.index')->whith('nessage', "$project->name_proj delete successfully");
+        return redirect()->route('admin.projects.index')->with('message', "$cancellato delete successfully");
     }
 }
