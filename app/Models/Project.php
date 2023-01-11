@@ -17,7 +17,8 @@ class Project extends Model
         'dev_framework',
         'team',
         'lvl_dif',
-        'link_git'
+        'link_git',
+        'cover_image',
     ];
     public static function generateSlug($name_proj)
     {

@@ -31,7 +31,8 @@ class UpdateProjectRequest extends FormRequest
             'dev_framework' => ['nullable'],
             'team' => ['nullable'],
             'link_git' => ['nullable'],
-            'lvl_dif' => ['nullable']
+            'lvl_dif' => ['nullable'],
+            'cover_image' => ['nullable', 'image', 'max:1000']
         ];
     }
 }

@@ -3,7 +3,7 @@
     <h1>Create Project</h1>
     <div class="row bg-white">
         <div class="col-12">
-            <form action="{{ route('admin.projects.store') }}" method="POST" class="p-4">
+            <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="p-4">
                 @csrf
                 <div class="mb-3">
                     {{-- name_proj --}}
@@ -11,6 +11,15 @@
                     <input type="text" class="form-control @error('name_proj') is-invalid @enderror" id="name_proj"
                         name="name_proj">
                     @error('name_proj')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- img_cover --}}
+                <div class="mb-3">
+                    <label for="cover_image" class="form-label">Immagine</label>
+                    <input type="file" name="cover_image" id="cover_image"
+                        class="form-control  @error('cover_image') is-invalid @enderror">
+                    @error('cover_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

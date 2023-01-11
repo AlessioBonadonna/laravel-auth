@@ -31,6 +31,7 @@ class StoreProjectRequest extends FormRequest
             'team' => 'nullable',
             'link_dif' => 'nullable',
             'lvl_git' => 'nullable',
+            'cover_image' => 'nullable|image|max: 250'
 
         ];
     }

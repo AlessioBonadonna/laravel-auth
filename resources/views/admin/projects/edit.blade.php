@@ -17,6 +17,20 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="d-flex">
+                    <div class="media me-4">
+                        <img class="shadow" width="150" src="{{ asset('storage/' . $project->cover_image) }}"
+                            alt="{{ $project->name_proj }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cover_image" class="form-label">cambia img anteprima </label>
+                        <input type="file" name="cover_image" id="cover_image"
+                            class="form-control  @error('cover_image') is-invalid @enderror">
+                        @error('cover_image')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description">{{ old('description', $project->description) }}</textarea>
@@ -32,7 +46,8 @@
                 <div class="mb-3">
                     <label for="dev_framework" class="form-label">dev_framework</label>
                     <input type="text" class="form-control @error('dev_framework') is-invalid @enderror"
-                        id="dev_framework" name="dev_framework" value="{{ old('dev_framework', $project->dev_framework) }}">
+                        id="dev_framework" name="dev_framework"
+                        value="{{ old('dev_framework', $project->dev_framework) }}">
                     @error('dev_framework')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
