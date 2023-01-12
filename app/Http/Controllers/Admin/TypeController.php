@@ -38,6 +38,11 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
+        $data = $request->validated();
+        $slug = Type::generateSlug($request->workflow);
+        $data['slug'] = $slug;
+        $new_type = Type::create($data);
+        return redirect()->route('admin.types.show', $new_type->slug);
     }
 
     /**
@@ -71,7 +76,14 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $data = $request->validated();
+        $slug = Type::generateSlug($request->workflow);
+        $data['slug'] = $slug;
+
+        $modifica = $type->workflow;
+
+        $type->update($data);
+        return redirect()->route('admin.types.index')->with('message', "$modifica updated successfully");
     }
 
     /**
