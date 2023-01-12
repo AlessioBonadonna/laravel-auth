@@ -32,7 +32,9 @@ class UpdateProjectRequest extends FormRequest
             'team' => ['nullable'],
             'link_git' => ['nullable'],
             'lvl_dif' => ['nullable'],
-            'cover_image' => ['nullable', 'image', 'max:1000']
+            'cover_image' => ['nullable', 'image', 'max:1000'],
+            'workflow_id' => ['required , exists:types,id'],
+
         ];
     }
 }

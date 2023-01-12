@@ -21,6 +21,7 @@ class Project extends Model
         'lvl_dif',
         'link_git',
         'cover_image',
+        'workflow_id',
     ];
     public static function generateSlug($name_proj)
     {

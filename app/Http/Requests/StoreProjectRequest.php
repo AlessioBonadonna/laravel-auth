@@ -31,7 +31,8 @@ class StoreProjectRequest extends FormRequest
             'team' => 'nullable',
             'link_dif' => 'nullable',
             'lvl_git' => 'nullable',
-            'cover_image' => 'nullable|image|max: 250'
+            'cover_image' => 'nullable|image|max: 250',
+            'workflow_id' => 'required|exists:types,id',
 
         ];
     }
@@ -42,7 +43,8 @@ class StoreProjectRequest extends FormRequest
             'name_proj.min' => 'Il titolo deve essere lungo almeno :min caratteri.',
             'name_proj.max' => 'Il titolo non può superare i :max caratteri.',
             'name_proj.unique:projects' => 'Il titolo esiste già',
-            'dev_lang.required' => 'Il parametro è obbligatorio'
+            'dev_lang.required' => 'Il parametro è obbligatorio',
+            'workflow_id.required' => 'il campo e richiesto'
 
 
         ];

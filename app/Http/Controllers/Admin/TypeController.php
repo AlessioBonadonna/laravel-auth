@@ -16,7 +16,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -26,7 +27,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -37,7 +38,6 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
     }
 
     /**
@@ -48,7 +48,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -59,7 +59,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -82,6 +82,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $cancellato = $type->workflow;
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('message', "$cancellato delete successfully");
     }
 }
