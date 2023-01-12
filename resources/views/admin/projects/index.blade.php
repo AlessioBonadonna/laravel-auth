@@ -23,10 +23,21 @@
                     <th scope="row">{{ $project->id }}</th>
                     <td><a href="{{ route('admin.projects.show', $project->slug) }}"
                             title="View project">{{ $project->name_proj }}</a></td>
+
+                    @foreach ($types as $type)
+                        @if ($type->id === $project->type_id)
+                            {
+                            <td>{{ $type->workflow }}</td>
+                            }
+                        @endif
+                    @endforeach
+                    </td>
                     <td>{{ Str::limit($project->description, 100) }}</td>
                     <td><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
                             title="Edit project"><i class="fa-solid fa-pen"></i></a></td>
                     <td>
+
+
                         <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -35,6 +46,7 @@
 
                         </form>
                     </td>
+
                 </tr>
             @endforeach
             </ul>

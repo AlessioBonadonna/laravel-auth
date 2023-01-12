@@ -32,7 +32,7 @@ class StoreProjectRequest extends FormRequest
             'link_dif' => 'nullable',
             'lvl_git' => 'nullable',
             'cover_image' => 'nullable|image|max: 250',
-            'workflow_id' => 'required|exists:types,id',
+            'type_id' => 'required|exists:types,id',
 
         ];
     }
@@ -44,7 +44,7 @@ class StoreProjectRequest extends FormRequest
             'name_proj.max' => 'Il titolo non può superare i :max caratteri.',
             'name_proj.unique:projects' => 'Il titolo esiste già',
             'dev_lang.required' => 'Il parametro è obbligatorio',
-            'workflow_id.required' => 'il campo e richiesto'
+            'type_id.required' => 'il campo e richiesto'
 
 
         ];

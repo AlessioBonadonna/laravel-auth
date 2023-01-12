@@ -33,7 +33,7 @@ class UpdateProjectRequest extends FormRequest
             'link_git' => ['nullable'],
             'lvl_dif' => ['nullable'],
             'cover_image' => ['nullable', 'image', 'max:1000'],
-            'workflow_id' => ['required , exists:types,id'],
+            'type_id' => ['required , exists:types,id'],
 
         ];
     }

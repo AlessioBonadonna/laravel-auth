@@ -13,7 +13,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
+                href="{{ route('admin.types.index') }}">
+
                 <i class="fa-solid fa-folder-open fa-lg fa-fw"></i> Categories
             </a>
         </li>

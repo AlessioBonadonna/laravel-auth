@@ -16,6 +16,7 @@ class Type extends Model
         'slug',
 
     ];
+
     public static function generateSlug($name)
     {
         return Str::slug($name, '-');
