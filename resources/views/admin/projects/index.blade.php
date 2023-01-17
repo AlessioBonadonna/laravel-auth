@@ -38,11 +38,15 @@
                             @method('DELETE')
                             <button type="submit" class="delete-button btn btn-danger ms-3"
                                 data-item-title="{{ $project->name_proj }}"> <i class="fa-solid fa-trash-can"></i></button>
-                            @foreach ($types as $type)
-                                @if ($type->id === $project->type_id)
-                    <td>{{ $type->workflow }}</td>
+
+                            @if ($project->type)
+                    <td>{{ $project->type->workflow }}</td>
+                @else
+                    <td>/</td>
             @endif
-            @endforeach
+            {{-- <td>{{ $project->type->workflow }}</td> --}}
+
+
             </form>
             </td>
 

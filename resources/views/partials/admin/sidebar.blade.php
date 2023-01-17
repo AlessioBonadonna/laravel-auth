@@ -20,9 +20,11 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="#">
-                <i class="fa-solid fa-bookmark fa-lg fa-fw"></i> Tags
-            </a>
+            <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.languages.index' ? 'bg-secondary' : '' }}"
+                href="{{ route('admin.languages.index') }}"><i class="fa-solid fa-tag"></i>Tutti i Linguaggi</a>
+        </li>
+        <i class="fa-solid fa-bookmark fa-lg fa-fw"></i> Tags
+        </a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-white" href="#">

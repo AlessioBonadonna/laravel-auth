@@ -38,6 +38,17 @@
                     @enderror
                 </div> --}}
                 {{-- dev_framework --}}
+                <div>
+                    <label for="languages">Linguaggi</label> <br>
+                    @foreach ($languages as $language)
+                        <input type="checkbox" name="languages[]"
+                            value="{{ $language->id }} {{ old('languages') ? (old('languages')->contains($language->id) ? 'checked' : '') : '' }}">
+                        <span class="text-capitalize">{{ $language->name }}</span>
+                    @endforeach
+                    {{-- @error('languages')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror --}}
+                </div>
                 <div class="mb-3">
                     <label for="dev_framework" class="form-label">framework usati </label>
                     <input class="form-control" id="dev_framework" name="dev_framework">

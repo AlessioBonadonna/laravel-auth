@@ -88,6 +88,16 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <div>
+                    <label for="languages">Linguaggi</label> <br>
+                    @foreach ($languages as $language)
+                        <input type="checkbox" name="languages[]" value="{{ $language->id }} "
+                            {{ old('languages', $project->languages) ? (old('languages', $project->languages)->contains($language->id) ? 'checked' : '') : '' }}>
+                        ￼ <span class="text-capitalize">{{ $language->name }}</span>>
+                        <span class="text-capitalize">{{ $language->name }}</span>
+                    @endforeach
+
+                </div>
                 <button type="submit" class="btn btn-success">Submit</button>
                 <button type="reset" class="btn btn-primary">Reset</button>
                 <button class="btn btn-primary"><a

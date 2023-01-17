@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Type;
+use App\Models\Language;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
@@ -21,8 +22,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        $types = Type::all();
-        return view('admin.projects.index', compact('projects', 'types'));
+
+
+        return view('admin.projects.index', compact('projects',)); //'languanges'));
     }
 
     /**
@@ -33,7 +35,8 @@ class ProjectController extends Controller
     public function create(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('project', 'types'));
+        $languages = Language::all();
+        return view('admin.projects.create', compact('project', 'types', 'languages'));
     }
 
     /**
@@ -52,6 +55,9 @@ class ProjectController extends Controller
             $data['cover_image'] = $path;
         }
         $new_project = Project::create($data);
+        if ($request->has('languages')) {
+            $new_project->languages()->attach($request->languages);
+        }
         return redirect()->route('admin.projects.show', $new_project->slug);
     }
 
@@ -77,7 +83,8 @@ class ProjectController extends Controller
 
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $languages = Language::all();
+        return view('admin.projects.edit', compact('project', 'types', 'languages'));
     }
 
 
@@ -102,6 +109,7 @@ class ProjectController extends Controller
             $path = Storage::disk('public')->put('project_images', $request->cover_image);
             $data['cover_image'] = $path;
         }
+        $project->languages()->sync($request->languages);
         $modifica = $project->name_proj;
 
         $project->update($data);
