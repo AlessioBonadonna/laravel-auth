@@ -27,11 +27,11 @@ class UpdateTypeRequest extends FormRequest
             'workflow' => ['required', 'max:15'],
         ];
     }
-    public function messages()
-    {
-        return [
-            'workflow.required' => 'richiesto',
-            'workflow.max' => 'non può superare i :max caratteri.',
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'workflow.required' => 'richiesto',
+    //         'workflow.max' => 'non può superare i :max caratteri.',
+    //     ];
+    // }
 }

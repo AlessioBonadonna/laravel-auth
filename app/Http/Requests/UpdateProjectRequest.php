@@ -27,13 +27,13 @@ class UpdateProjectRequest extends FormRequest
         return [
             'name_proj' => ['required', Rule::unique('projects')->ignore($this->project)],
             'description' => ['nullable'],
-            'dev_lang' => ['required'],
+
             'dev_framework' => ['nullable'],
             'team' => ['nullable'],
             'link_git' => ['nullable'],
             'lvl_dif' => ['nullable'],
             'cover_image' => ['nullable', 'image', 'max:1000'],
-            'type_id' => ['required , exists:types,id'],
+            'type_id' => ['required', 'exists:types,id'],
 
         ];
     }

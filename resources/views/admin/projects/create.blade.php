@@ -28,7 +28,7 @@
                     <label for="description" class="form-label">description</label>
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
-                {{-- dev lang  --}}
+                {{-- dev lang  
                 <div class="mb-3">
                     <label for="dev_lang" class="form-label">Linguaggi di programmazione</label>
                     <input type="text" class="form-control @error('dev_lang') is-invalid @enderror" id="dev_lang"
@@ -36,7 +36,7 @@
                     @error('dev_lang')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 {{-- dev_framework --}}
                 <div class="mb-3">
                     <label for="dev_framework" class="form-label">framework usati </label>
@@ -61,6 +61,21 @@
             <label for="link_git" class="form-label">GhitHub </label>
             <input class="form-control" id="link_git" name="link_git">
         </div>
+        <div class="mb-3">
+            <label for="type_id" class="form-label">Seleziona workflow</label>
+            <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">
+                <option value="">Seleziona workflow</option>
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                        {{ $type->workflow }}</option>
+                @endforeach
+            </select>
+            @error('type_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        {{-- workflow type --}}
+
 
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-primary">Reset</button>

@@ -15,6 +15,7 @@
                 <th scope="col">Content</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
+                <th scope="col">workflow</th>
             </tr>
         </thead>
         <tbody>
@@ -24,13 +25,7 @@
                     <td><a href="{{ route('admin.projects.show', $project->slug) }}"
                             title="View project">{{ $project->name_proj }}</a></td>
 
-                    @foreach ($types as $type)
-                        @if ($type->id === $project->type_id)
-                            {
-                            <td>{{ $type->workflow }}</td>
-                            }
-                        @endif
-                    @endforeach
+
                     </td>
                     <td>{{ Str::limit($project->description, 100) }}</td>
                     <td><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
@@ -43,11 +38,15 @@
                             @method('DELETE')
                             <button type="submit" class="delete-button btn btn-danger ms-3"
                                 data-item-title="{{ $project->name_proj }}"> <i class="fa-solid fa-trash-can"></i></button>
+                            @foreach ($types as $type)
+                                @if ($type->id === $project->type_id)
+                    <td>{{ $type->workflow }}</td>
+            @endif
+            @endforeach
+            </form>
+            </td>
 
-                        </form>
-                    </td>
-
-                </tr>
+            </tr>
             @endforeach
             </ul>
         </tbody>

@@ -25,7 +25,7 @@ class ProjectTableSeeder extends Seeder
             $project->name_proj = $faker->words(3, true);
             $project->slug = Str::slug($project->name_proj, '-');
             $project->description = $faker->paragraph();
-            $project->dev_lang = $faker->words(3, true);
+            // $project->dev_lang = $faker->words(3, true);
             $project->dev_framework = $faker->words(4, true);
             $project->team = $faker->firstName();
             $project->lvl_dif = $faker->numberBetween(1, 10);

@@ -35,19 +35,18 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description">{{ old('description', $project->description) }}</textarea>
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="dev_lang" class="form-label">Linguaggi</label>
                     <input type="text" class="form-control @error('dev_lang') is-invalid @enderror" id="dev_lang"
                         name="dev_lang" value="{{ old('dev_lang', $project->dev_lang) }}">
                     @error('dev_lang')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="mb-3">
                     <label for="dev_framework" class="form-label">dev_framework</label>
                     <input type="text" class="form-control @error('dev_framework') is-invalid @enderror"
-                        id="dev_framework" name="dev_framework"
-                        value="{{ old('dev_framework', $project->dev_framework) }}">
+                        id="dev_framework" name="dev_framework" value="{{ old('dev_framework', $project->dev_framework) }}">
                     @error('dev_framework')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -73,6 +72,19 @@
                     <input type="number" class="form-control @error('lvl_dif') is-invalid @enderror" id="lvl_dif"
                         name="lvl_dif" value="{{ old('lvl_dif', $project->lvl_dif) }}">
                     @error('lvl_dif')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="type_id" class="form-label">Seleziona workflow</label>
+                    <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">
+                        <option value="">Seleziona workflow</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                                {{ $type->workflow }}</option>
+                        @endforeach
+                    </select>
+                    @error('type_id')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

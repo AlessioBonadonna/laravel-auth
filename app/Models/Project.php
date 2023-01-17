@@ -15,7 +15,7 @@ class Project extends Model
         'name_proj',
         'slug',
         'description',
-        'dev_lang',
+
         'dev_framework',
         'team',
         'lvl_dif',
